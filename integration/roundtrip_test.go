@@ -12,7 +12,7 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 
-	"github.com/maxbrunsfeld/counterfeiter/v6/generator"
+	"github.com/jsokel/counterfeiter/v6/generator"
 )
 
 func runTests(t *testing.T, when spec.G, it spec.S) {
@@ -62,7 +62,7 @@ func runTests(t *testing.T, when spec.G, it spec.S) {
 		}
 		initModuleFunc = func() {
 			copyFileFunc("blank.go")
-			err := os.WriteFile(filepath.Join(baseDir, "go.mod"), []byte("module github.com/maxbrunsfeld/counterfeiter/v6/fixtures"), 0755)
+			err := os.WriteFile(filepath.Join(baseDir, "go.mod"), []byte("module github.com/jsokel/counterfeiter/v6/fixtures"), 0755)
 			Expect(err).ToNot(HaveOccurred())
 		}
 		// Set this to true to write the output of tests to the testdata/output
@@ -141,9 +141,9 @@ func runTests(t *testing.T, when spec.G, it spec.S) {
 					if suffix != "" {
 						suffix = "/" + suffix
 					}
-					WriteOutput([]byte(fmt.Sprintf("module github.com/maxbrunsfeld/counterfeiter/v6/fixtures%s\n", suffix)), filepath.Join(baseDir, "go.mod"))
+					WriteOutput([]byte(fmt.Sprintf("module github.com/jsokel/counterfeiter/v6/fixtures%s\n", suffix)), filepath.Join(baseDir, "go.mod"))
 					cache := &generator.FakeCache{}
-					f, err := generator.NewFake(generator.InterfaceOrFunction, interfaceName, fmt.Sprintf("github.com/maxbrunsfeld/counterfeiter/v6/fixtures%s", suffix), "Fake"+interfaceName, "fixturesfakes", "", baseDir, cache)
+					f, err := generator.NewFake(generator.InterfaceOrFunction, interfaceName, fmt.Sprintf("github.com/jsokel/counterfeiter/v6/fixtures%s", suffix), "Fake"+interfaceName, "fixturesfakes", "", baseDir, cache)
 					Expect(err).NotTo(HaveOccurred())
 					b, err := f.Generate(true) // Flip to false to see output if goimports fails
 					Expect(err).NotTo(HaveOccurred())
@@ -183,7 +183,7 @@ func runTests(t *testing.T, when spec.G, it spec.S) {
 					})
 
 					it("succeeds", func() {
-						pkgPath := "github.com/maxbrunsfeld/counterfeiter/v6/fixtures/dup_packages"
+						pkgPath := "github.com/jsokel/counterfeiter/v6/fixtures/dup_packages"
 						if offset != "" {
 							pkgPath = pkgPath + "/" + offset
 						}

@@ -1,4 +1,4 @@
-# `counterfeiter` [![GitHub Actions](https://github.com/maxbrunsfeld/counterfeiter/actions/workflows/go.yml/badge.svg)](https://github.com/maxbrunsfeld/counterfeiter/actions/workflows/go.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/maxbrunsfeld/counterfeiter/v6)](https://goreportcard.com/report/github.com/maxbrunsfeld/counterfeiter/v6) [![GoDoc](https://godoc.org/github.com/maxbrunsfeld/counterfeiter/v6?status.svg)](https://godoc.org/github.com/maxbrunsfeld/counterfeiter/v6)
+# `counterfeiter` [![GitHub Actions](https://github.com/jsokel/counterfeiter/actions/workflows/go.yml/badge.svg)](https://github.com/jsokel/counterfeiter/actions/workflows/go.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/jsokel/counterfeiter/v6)](https://goreportcard.com/report/github.com/jsokel/counterfeiter/v6) [![GoDoc](https://godoc.org/github.com/jsokel/counterfeiter/v6?status.svg)](https://godoc.org/github.com/jsokel/counterfeiter/v6)
 
 When writing unit-tests for an object, it is often useful to have fake implementations
 of the object's collaborators. In go, such fake implementations cannot be generated
@@ -34,7 +34,7 @@ $ cat tools/tools.go
 package tools
 
 import (
-	_ "github.com/maxbrunsfeld/counterfeiter/v6"
+	_ "github.com/jsokel/counterfeiter/v6"
 )
 
 // This file imports packages that are used when running go generate, or used
@@ -52,7 +52,7 @@ $ cat myinterface.go
 ```go
 package foo
 
-//go:generate go run github.com/maxbrunsfeld/counterfeiter/v6 . MySpecialInterface
+//go:generate go run github.com/jsokel/counterfeiter/v6 . MySpecialInterface
 
 type MySpecialInterface interface {
 	DoThings(string, uint64) (int, error)
@@ -78,7 +78,7 @@ $ cat myinterface.go
 package foo
 
 // You only need **one** of these per package!
-//go:generate go run github.com/maxbrunsfeld/counterfeiter/v6 -generate
+//go:generate go run github.com/jsokel/counterfeiter/v6 -generate
 
 // You will add lots of directives like these in the same package...
 //counterfeiter:generate . MySpecialInterface
@@ -112,7 +112,7 @@ $ go generate ./...
 You can use the following command to invoke `counterfeiter` from within a go module:
 
 ```shell
-$ go run github.com/maxbrunsfeld/counterfeiter/v6
+$ go run github.com/jsokel/counterfeiter/v6
 
 USAGE
 	counterfeiter
@@ -126,7 +126,7 @@ USAGE
 This is unnecessary if you're using the approach described above, but does allow you to invoke `counterfeiter` in your shell _outside_ of a module:
 
 ```shell
-$ go install github.com/maxbrunsfeld/counterfeiter/v6
+$ go install github.com/jsokel/counterfeiter/v6
 $ ~/go/bin/counterfeiter
 
 USAGE
@@ -153,7 +153,7 @@ type MySpecialInterface interface {
 ```
 
 ```shell
-$ go run github.com/maxbrunsfeld/counterfeiter/v6 path/to/foo MySpecialInterface
+$ go run github.com/jsokel/counterfeiter/v6 path/to/foo MySpecialInterface
 Wrote `FakeMySpecialInterface` to `path/to/foo/foofakes/fake_my_special_interface.go`
 ```
 
@@ -189,14 +189,14 @@ Expect(num).To(Equal(3))
 Expect(err).To(Equal(errors.New("the-error")))
 ```
 
-For more examples of using the `counterfeiter` API, look at [some of the provided examples](https://github.com/maxbrunsfeld/counterfeiter/blob/master/generated_fakes_test.go).
+For more examples of using the `counterfeiter` API, look at [some of the provided examples](https://github.com/jsokel/counterfeiter/blob/master/generated_fakes_test.go).
 
 ### Generating Test Doubles For Third Party Interfaces
 
 For third party interfaces, you can specify the interface using the alternative syntax `<package>.<interface>`, for example:
 
 ```shell
-$ go run github.com/maxbrunsfeld/counterfeiter/v6 github.com/go-redis/redis.Pipeliner
+$ go run github.com/jsokel/counterfeiter/v6 github.com/go-redis/redis.Pipeliner
 ```
 
 ### Running The Tests For `counterfeiter`

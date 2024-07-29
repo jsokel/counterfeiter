@@ -14,7 +14,7 @@ import (
 
 	"testing"
 
-	"github.com/maxbrunsfeld/counterfeiter/v6/arguments"
+	"github.com/jsokel/counterfeiter/v6/arguments"
 
 	. "github.com/onsi/gomega"
 	"github.com/sclevine/spec"
