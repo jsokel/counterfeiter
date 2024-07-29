@@ -1,4 +1,4 @@
-module github.com/maxbrunsfeld/counterfeiter/v6
+module github.com/jsokel/counterfeiter/v6
 
 require (
 	github.com/onsi/gomega v1.33.1
